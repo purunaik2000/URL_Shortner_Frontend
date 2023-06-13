@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ContentCopy } from '@mui/icons-material';
-// import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import EastSharpIcon from '@mui/icons-material/EastSharp';
 import qrGenrator from 'qrcode';
@@ -59,8 +58,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 function App() {
-  const [isDark, setIsDark] = useState(true);
-  const [mode, setMode] = useState('dark');
+  const [isDark, setIsDark] = useState(false);
+  const [mode, setMode] = useState('light');
   const [shortenUrl, setShortenUrl] = useState('');
   const [alert, setAlert] = useState(null);
   const [url, setUrl] = useState('');
