@@ -9,6 +9,7 @@ import { ContentCopy } from '@mui/icons-material';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import EastSharpIcon from '@mui/icons-material/EastSharp';
 import qrGenrator from 'qrcode';
+import About from './About';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -64,6 +65,7 @@ function App() {
   const [alert, setAlert] = useState(null);
   const [url, setUrl] = useState('');
   const [qrCode, setQrCode] = useState('');
+  const [about, setAbout] = useState(false);
 
   const theme = createTheme({
     palette: {
@@ -138,6 +140,16 @@ function App() {
     }
   }
 
+  function aboutHandler(){
+    setAbout(true);
+    setShortenUrl('');
+    setQrCode('');
+  }
+
+  function homeHandler(){
+    setAbout(false);
+  }
+
   useEffect(()=>{
     setTimeout(()=>{
       setAlert(null);
@@ -172,7 +184,7 @@ function App() {
               <Button sx={{
                 color: 'white',
                 fontSize: 'large'
-              }}>
+              }} onClick={homeHandler}>
                 Home
               </Button>
             </Typography>
@@ -184,7 +196,7 @@ function App() {
               <Button sx={{
                 color: 'white',
                 fontSize: 'large'
-              }}>
+              }} onClick={aboutHandler}>
                 About
               </Button>
             </Typography>
@@ -215,8 +227,12 @@ function App() {
             </Stack>
           }
 
+          {
+            about && <About/>
+          }
+
           {/* Url Container */}
-          <Box sx={{
+          {!about && <Box sx={{
             display: 'flex',
             marginTop: '10vh',
             justifySelf: 'center',
@@ -234,7 +250,7 @@ function App() {
               }} variant='outlined' m={2} onClick={convertHandler}>Convert</Button>
 
             </Stack>
-          </Box>
+          </Box>}
 
           {/* Shorten Url container */}
           {shortenUrl
