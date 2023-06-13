@@ -9,6 +9,7 @@ import QrCode2Icon from '@mui/icons-material/QrCode2';
 import EastSharpIcon from '@mui/icons-material/EastSharp';
 import qrGenrator from 'qrcode';
 import About from './About';
+import Progress from './Progress';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -65,6 +66,7 @@ function App() {
   const [url, setUrl] = useState('');
   const [qrCode, setQrCode] = useState('');
   const [about, setAbout] = useState(false);
+  const [progress, setProgress] = useState(false);
 
   const theme = createTheme({
     palette: {
@@ -82,6 +84,7 @@ function App() {
   }
 
   async function convertHandler(){
+    setProgress(true);
     setShortenUrl('');
     setQrCode('');
     if(!url.length || !url.trim().length){
@@ -118,6 +121,7 @@ function App() {
         });
       }
     }
+    setProgress(false)
   }
 
   function handleCopy(){
@@ -278,6 +282,8 @@ function App() {
 
             </Box>
           }
+
+          {progress && <Progress/>}
 
           {
             qrCode &&
